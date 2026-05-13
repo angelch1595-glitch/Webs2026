@@ -1,6 +1,6 @@
 const Estudiante = (props) => {
   //{nombre:xxxxedad:00,url:xxxxxxx}
-  const { id,nombre, edad, url,eliminarEstudiante,editarEstudiante} = props;
+  const {nombre, edad, url} = props;
   return (
     <div>
       <h1>{nombre}</h1>
@@ -8,8 +8,6 @@ const Estudiante = (props) => {
       <a href={url} target="_blank">
         home
       </a>
-      <button onClick={()=>{eliminarEstudiante(id)}}>Eliminar</button>
-      <button onClick={()=>{editarEstudiante(id)}}>Editar</button>
     </div>
   );
 };
