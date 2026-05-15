@@ -1,0 +1,35 @@
+{
+  "estudiantes": [
+    {
+      "id": "1",
+      "nombre": "Angel",
+      "edad": "23",
+      "url": "https://www.google.com"
+    },
+    {
+      "id": "2",
+      "nombre": "Pepe",
+      "edad": "24",
+      "url": "https://www.epn.edu.ec"
+    },
+    {
+      "id": "3",
+      "nombre": "Maria",
+      "edad": "23",
+      "url": "https://www.facebook.com"
+    },
+    {
+      "id": "NXs7ulxPrG4",
+      "nombre": "Luis",
+      "edad": "24",
+      "url": "https://www.facebook.com"
+    },
+    {
+      "id": "mhd184AF7uw",
+      "nombre": "Angel",
+      "edad": "21",
+      "url": "https://www.google.com"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
