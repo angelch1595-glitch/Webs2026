@@ -4,7 +4,6 @@ const EstudianteForm = (props) => {
   const [errorNombre, setErrorNombre] = useState("");
   const [errorEdad, setErrorEdad] = useState("");
   const [estudianteNuevo, setEstudianteNuevo] = useState({
-    id: Date.now,
     nombre: "",
     edad: "",
     url: "",
