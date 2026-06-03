@@ -1,16 +1,23 @@
 {
   "estudiantes": [
     {
-      "nombre": "Juan ",
-      "edad": "21",
-      "url": "haha",
-      "id": "1wA0JNcKi0g"
-    },
-    {
-      "nombre": "Pepe",
+      "nombre": "Lunatica",
       "edad": "21",
       "url": "https://www.google.com",
       "id": "Ep_-fxay120"
+    },
+    {
+      "nombre": "Miguel",
+      "edad": "22",
+      "url": "https://dbdiagram.io/d/legacy_bdd_model_v3_bd-6a1512f8dfb20dafcdefa346",
+      "id": "ZX8qx0e5IH8"
+    },
+    {
+      "nombre": "Anita",
+      "edad": "23",
+      "url": "https://www.facebook.com",
+      "id": "v1YtnMtugo0"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

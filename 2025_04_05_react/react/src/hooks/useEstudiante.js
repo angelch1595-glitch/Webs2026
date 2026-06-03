@@ -19,18 +19,24 @@ export const useEstudiante = () => {
         api
             .post("/estudiantes", estudianteFinal)
             .then((res) => {
-                setEstudiantes((prev)=>[...prev, res.data]);
+                setEstudiantes((prev) => [...prev, res.data]);
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-
+    const actualizarEstudiante=(id,estudiante)=>{
+        api.put(`/estudiantes/${id}`,estudiante)
+        .then((res)=>{
+            setEstudiantes(prev=>prev.map((e)=>e.id===id?res.data:e))
+        })
+        .catch(err=>console.log(err))
+    }
     const eliminarEstudiante = (id) => {
         api.delete(`/estudiantes/${id}`)
-        .then(()=>setEstudiantes((prev)=>prev.filter(e=>e.id!==id)))
-        .catch(err=>console.log(err))
+            .then(() => setEstudiantes((prev) => prev.filter(e => e.id !== id)))
+            .catch(err => console.log(err))
 
     }
-    return { estudiantes ,agregarEstudiante,eliminarEstudiante}
+    return { estudiantes, agregarEstudiante, eliminarEstudiante, actualizarEstudiante }
 }

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../utils/api";
-
 const DetalleEstudiante = () => {
   const [estudiante, setEstudiante] = useState({});
   const { id } = useParams(); //use params devuelve?
-
+  const navegar=useNavigate();
   useEffect(() => {
     api
       .get(`/estudiantes/${id}`)
@@ -23,7 +22,7 @@ const DetalleEstudiante = () => {
         <span>Home Page no disponible</span>
       )}
       <div>
-        <button>Editar</button>
+        <button onClick={()=>navegar(`/estudiantes/${id}/editar`)}>Editar</button>
       </div>
     </div>
   );

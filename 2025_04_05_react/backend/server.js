@@ -11,11 +11,13 @@ app.get("/estudiantes", (req, res) => {
     res.json({ "mensaje": "Endpoint para obtener lista de estudiantes" })
 })
 app.get("/estudiantes/:id", (req, res) => {
-    const id=req.params
-    res.json({ "mensaje": `Endpoint para obtener lista de estudiantes con ${id}` })
-})
+    const id = req.params.id;
+    res.json({ "mensaje": `Endpoint para obtener estudiante con id ${id}` });
+});
+
 app.delete("/estudiantes/:id", (req, res) => {
-    const id=req.params
-    res.json({ "mensaje": `Endpoint para oeliminar estudiantes por ${id}` })
-})
+    const id = req.params.id;
+    res.json({ "mensaje": `Endpoint para eliminar estudiante con id ${id}` });
+});
+
 app.listen(puerto, () => console.log("El servidor esta escuchando en el puerto: ", puerto))
