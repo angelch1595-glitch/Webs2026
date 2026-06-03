@@ -1,16 +1,18 @@
 import EstudianteForm from "./components/EstudianteForm";
 import EstudiantePage from "./pages/EstudiantePage";
 import HomePage from "./pages/HomePage";
+import DetalleEstudiante from "./pages/DetalleEstudiante";
 import { useEstudiante } from "./hooks/useEstudiante";
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 const App=()=>{
-  const { estudiantes ,agregarEstudiante}=useEstudiante()
+  const { estudiantes ,agregarEstudiante,eliminarEstudiante}=useEstudiante()
   return(
     <BrowserRouter>
     <Routes>
-      <Route path="/estudiantes" element={<EstudiantePage estudiantes={estudiantes}/>}/>
+      <Route path="/estudiantes" element={<EstudiantePage estudiantes={estudiantes} onEliminar={eliminarEstudiante}/>}/>{/* 3 */ }
       <Route path="/nuevo" element={<EstudianteForm onAgregar={agregarEstudiante}/>}/>
-      <Route path="/home" element={<HomePage/>}/>
+      <Route path= "/estudiantes/:id/detalle" element= {<DetalleEstudiante/>}></Route>
+      <Route path="/" element= {<HomePage/>}></Route>
     </Routes>
     </BrowserRouter>
     

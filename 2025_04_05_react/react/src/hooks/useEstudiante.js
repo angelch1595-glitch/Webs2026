@@ -25,5 +25,12 @@ export const useEstudiante = () => {
                 console.log(err);
             });
     };
-    return { estudiantes ,agregarEstudiante}
+
+    const eliminarEstudiante = (id) => {
+        api.delete(`/estudiantes/${id}`)
+        .then(()=>setEstudiantes((prev)=>prev.filter(e=>e.id!==id)))
+        .catch(err=>console.log(err))
+
+    }
+    return { estudiantes ,agregarEstudiante,eliminarEstudiante}
 }

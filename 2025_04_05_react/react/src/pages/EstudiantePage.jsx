@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Estudiante from "../components/Estudiante";
 //import { useEstudiante } from "../hooks/useEstudiante";
 //import listEstudiantes from "../urls/data";
@@ -5,22 +6,41 @@ import Estudiante from "../components/Estudiante";
 
 const EstudiantePage = (props) => {
   const { estudiantes } = props;
+  const { onEliminar } = props;
+  const navegar = useNavigate();
   console.log("Renderizando....");
+
   return (
     <div>
       <h1>Estudiantes</h1>
       {/*<EstudianteForm onAgregar={agregarEstudiante}></EstudianteForm>*/}
+      <button
+        onClick={() => {
+          navegar("/nuevo");
+        }}
+      >
+        <strong>+</strong>
+      </button>
       <hr />
       <div>
         {estudiantes.map((estudiante) => {
           return (
-            <Estudiante
-              key={estudiante.id}
-              id={estudiante.id}
-              nombre={estudiante.nombre}
-              edad={estudiante.edad}
-              url={estudiante.url}
-            ></Estudiante>
+            <div key={estudiante.id}>
+              <Estudiante
+                id={estudiante.id}
+                nombre={estudiante.nombre}
+                edad={estudiante.edad}
+                url={estudiante.url}
+              ></Estudiante>
+              <button
+                onClick={() => navegar(`/estudiantes/${estudiante.id}/detalle`)}
+              >
+                Detalle
+              </button>
+              <button onClick={() => onEliminar(estudiante.id)}>
+                Eliminar
+              </button>
+            </div>
           );
         })}
       </div>

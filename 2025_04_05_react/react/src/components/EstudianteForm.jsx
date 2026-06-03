@@ -15,13 +15,14 @@ const EstudianteForm = (props) => {
     e.preventDefault();
     if (estudianteNuevo.nombre.length > 8) {
       setErrorNombre("Maximo 8 caracteres");
-      navegar("/estudiantes")
+      
     } else if (estudianteNuevo.edad <= 18) {
       setErrorEdad("Debes ser mayor de 18 años");
     } else {
       onAgregar(estudianteNuevo);
       setErrorNombre("");
       setErrorEdad("");
+      navegar("/estudiantes");
       setEstudianteNuevo({ ...estudianteNuevo, nombre: "", edad: "", url: "" });
     }
   };
