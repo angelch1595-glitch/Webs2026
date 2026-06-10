@@ -37,7 +37,7 @@ const EstudiantePage = (props) => {
               >
                 Detalle
               </button>
-              <button onClick={() => onEliminar(estudiante.id)}>
+              <button onClick={() => onEliminar(estudiante.id)}>  
                 Eliminar
               </button>
             </div>
