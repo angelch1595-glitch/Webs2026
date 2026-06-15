@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const puerto = 8000;
-
+const cors=require("cors")
 const Estudiante = require("./models/estudiante.model");
-
+app.use(cors)
 app.use(express.json());
 
 const allEstudiantesRoutes = require("./routes/estudiante.route");
