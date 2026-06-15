@@ -10,19 +10,33 @@ const Estudiante = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
+            validate: {
+                notNull: { msg: "Id is required" }
+            }
         },
         nombre: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                notNull: {
+                    msg: "name is required"
+                }
+            }
         },
         edad: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            notNull: {
+                msg: "edad is required"
+            }
         },
         url: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true,
+            notNull: {
+                msg: "url is required"
+            }
         }
     },
     {
