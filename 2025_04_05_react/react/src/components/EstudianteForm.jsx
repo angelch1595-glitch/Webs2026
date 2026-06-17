@@ -26,7 +26,7 @@ const EstudianteForm = (props) => {
   const guardarEstudiante = (e) => {
     e.preventDefault();
 
-    if (estudianteNuevo.nombre.length > 10) {
+    if (estudianteNuevo.nombre.length > 18) {
       setErrorNombre("Maximo 10 caracteres");
       return;
     }
@@ -55,6 +55,7 @@ const EstudianteForm = (props) => {
         <input
           type="text"
           id="txtNombre"
+          name="nombre"
           value={estudianteNuevo.nombre}
           onChange={(e) =>
             setEstudianteNuevo({
@@ -74,6 +75,7 @@ const EstudianteForm = (props) => {
         <input
           type="text"
           id="txtEdad"
+          name="edad"
           value={estudianteNuevo.edad}
           onChange={(e) =>
             setEstudianteNuevo({
@@ -93,6 +95,7 @@ const EstudianteForm = (props) => {
         <input
           type="text"
           id="txtUrl"
+          name="url"
           value={estudianteNuevo.url}
           onChange={(e) =>
             setEstudianteNuevo({

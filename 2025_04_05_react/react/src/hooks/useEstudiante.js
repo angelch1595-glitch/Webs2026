@@ -28,13 +28,13 @@ export const useEstudiante = () => {
     const actualizarEstudiante=(id,estudiante)=>{
         api.put(`/estudiantes/${id}`,estudiante)
         .then((res)=>{
-            setEstudiantes(prev=>prev.map((e)=>e.id===id?res.data:e))
+            setEstudiantes(prev=>prev.map((e)=>e._id===id?res.data:e))
         })
         .catch(err=>console.log(err))
     }
     const eliminarEstudiante = (id) => {
         api.delete(`/estudiantes/${id}`)
-            .then(() => setEstudiantes((prev) => prev.filter(e => e.id !== id)))
+            .then(() => setEstudiantes((prev) => prev.filter(e => e._id !== id)))
             .catch(err => console.log(err))
 
     }

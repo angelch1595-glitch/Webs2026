@@ -25,19 +25,19 @@ const EstudiantePage = (props) => {
       <div>
         {estudiantes.map((estudiante) => {
           return (
-            <div key={estudiante.id}>
+            <div key={estudiante._id}>
               <Estudiante
-                id={estudiante.id}
+                _id={estudiante._id}
                 nombre={estudiante.nombre}
                 edad={estudiante.edad}
                 url={estudiante.url}
               ></Estudiante>
               <button
-                onClick={() => navegar(`/estudiantes/${estudiante.id}/detalle`)}
+                onClick={() => navegar(`/estudiantes/${estudiante._id}/detalle`)}
               >
                 Detalle
               </button>
-              <button onClick={() => onEliminar(estudiante.id)}>  
+              <button onClick={() => onEliminar(estudiante._id)}>  
                 Eliminar
               </button>
             </div>
