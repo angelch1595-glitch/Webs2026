@@ -25,6 +25,7 @@ export const useEstudiante = () => {
                 console.log(err);
             });
     };
+    
     const actualizarEstudiante=(id,estudiante)=>{
         api.put(`/estudiantes/${id}`,estudiante)
         .then((res)=>{

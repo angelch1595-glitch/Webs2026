@@ -15,6 +15,8 @@ const EstudianteForm = (props) => {
     nombre: "",
     edad: "",
     url: "",
+    email:"",
+    password:""
   });
   useEffect(() => {
     api
@@ -104,6 +106,40 @@ const EstudianteForm = (props) => {
             })
           }
           placeholder="Ingresa la URL"
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="txtEmail">Email: </label>
+        <input
+          type="email"
+          id="txtEmail"
+          name="email"
+          value={estudianteNuevo.email}
+          onChange={(e) =>
+            setEstudianteNuevo({
+              ...estudianteNuevo,
+              email: e.target.value,
+            })
+          }
+          placeholder="Ingresa la Email"
+          required
+        />
+      </div>
+            <div>
+        <label htmlFor="txtPassword">Password: </label>
+        <input
+          type="password"
+          id="txtPassword"
+          name="password"
+          value={estudianteNuevo.password}
+          onChange={(e) =>
+            setEstudianteNuevo({
+              ...estudianteNuevo,
+              password: e.target.value,
+            })
+          }
+          placeholder="Ingresa la password"
           required
         />
       </div>
