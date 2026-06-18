@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { api } from "../utils/api";
 export const useEstudiante = () => {
     const [estudiantes, setEstudiantes] = useState([]);
+    const [mensaje,setMensaje]=useState({})
     useEffect(() => {
         api
             .get("/estudiantes")
@@ -25,6 +26,7 @@ export const useEstudiante = () => {
                 console.log(err);
             });
     };
+    
     const actualizarEstudiante=(id,estudiante)=>{
         api.put(`/estudiantes/${id}`,estudiante)
         .then((res)=>{
@@ -38,5 +40,17 @@ export const useEstudiante = () => {
             .catch(err => console.log(err))
 
     }
-    return { estudiantes, agregarEstudiante, eliminarEstudiante, actualizarEstudiante }
+   const validarEstudiante = (estudianteLogin) => {
+    return api.post(`/estudiantes/login`, estudianteLogin)
+        .then(res => {
+            return res.data; 
+        })
+        .catch(err => {
+            if (err.response) {
+                throw err.response.data;
+            }
+            throw { message: "Error de conexión" };
+        });
+}
+    return { estudiantes, agregarEstudiante, eliminarEstudiante, actualizarEstudiante,validarEstudiante }
 }

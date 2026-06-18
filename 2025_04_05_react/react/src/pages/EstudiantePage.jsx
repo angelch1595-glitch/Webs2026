@@ -31,6 +31,8 @@ const EstudiantePage = (props) => {
                 nombre={estudiante.nombre}
                 edad={estudiante.edad}
                 url={estudiante.url}
+                email={estudiante.email}
+                password={estudiante.password}
               ></Estudiante>
               <button
                 onClick={() => navegar(`/estudiantes/${estudiante._id}/detalle`)}

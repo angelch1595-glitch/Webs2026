@@ -5,4 +5,5 @@ app.get('/estudiantes/:id',EstudianteController.getEstudianteById)
 app.post('/estudiantes',EstudianteController.createEstudiante)
 app.put('/estudiantes/:id',EstudianteController.updateEstudiante)
 app.delete('/estudiantes/:id',EstudianteController.deleteEstudiante)
+app.post('/estudiantes/login',EstudianteController.loginUser)
 }
