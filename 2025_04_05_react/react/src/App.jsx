@@ -14,6 +14,7 @@ const App=()=>{
       <Route path="/nuevo" element={<EstudianteForm onAgregar={agregarEstudiante} />}/>
       <Route path= "/estudiantes/:id/detalle" element= {<DetalleEstudiante/>}></Route>
       <Route path="/estudiantes/:id/editar" element={<EstudianteForm onEditar={actualizarEstudiante}/>}></Route>
+      <Route path="/estudiantes/login" element={<EstudianteLogin onValidar={validarEstudiante}/>}></Route>
       <Route path="/" element= {<HomePage/>}></Route>
     </Routes>
     </BrowserRouter>

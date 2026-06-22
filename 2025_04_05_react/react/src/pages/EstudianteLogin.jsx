@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
 
-const EstudianteLogin = () => {
+const EstudianteLogin = (props) => {
+    const { onValidar } = props
     const navegar = useNavigate();
     const [mensajeLogin, setMensajeLogin] = useState("");
     const [estudianteLogin, setEstudianteLogin] = useState({
@@ -17,7 +18,7 @@ const EstudianteLogin = () => {
                 setMensajeLogin(respuesta.message);
             })
             .catch((error) => {
-            setMensajeLogin(error.message);
+                setMensajeLogin(error.message);
             });
     };
 
