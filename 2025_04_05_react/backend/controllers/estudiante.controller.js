@@ -1,48 +1,25 @@
 const Estudiante = require("../models/estudiante.model")
-const bcrypt = require("bcryptjs")
-
 module.exports.getAllEstudiantes = (_, response) => {
     Estudiante.find({})
         .then(estudiantes => response.json(estudiantes))
-        .catch(err => response.json(err))
+        .catch(err => response.status(500).json(err))
 }
 
 module.exports.getEstudianteById = (req, res) => {
     const { id } = req.params
     Estudiante.findById(id)
-        .then(estudiantes => res.json(estudiantes))
-        .catch(err => res.json(err))
+        .then(estudiante => res.json(estudiante))
+        .catch(err => res.status(500).json(err))
 }
 
 module.exports.createEstudiante = async (req, res) => {
-    const { nombre, edad, url, password, email } = req.body
-    if (!nombre || !email || !edad || !password) {
-        res.status(400).json({ message: "missing fields, all are mandatory" })
-    }
-    else {
-        const estudianteFound = await Estudiante.findOne({ email })
-        if (estudianteFound) {
-            res.status(400).json({ message: "user alredy exits" })
-        }
-        else {
-            const salt = await bcrypt.genSalt(10)
-            const hashedPassword = await bcrypt.hash(password, salt)
-            Estudiante.create({ nombre, edad, url, email, password: hashedPassword })
-                .then(est => res.json({ email: est.email, nombre: est.nombre, edad: est.edad, url: est.url, _id: est._id }))
-                .catch(err => res.status(500).json(err))
-        }
-
-    }
-
-}
-module.exports.loginUser = async (req, res) => {
-    const { email, password } = req.body
-    const estudianteFound = await Estudiante.findOne({ email })
-    if (estudianteFound && (await bcrypt.compare(password, estudianteFound.password))) {
-        res.json({ message: "Login User", email: estudianteFound.email, nombre: estudianteFound.nombre })
-    }
-    else {
-        res.status(400).json({ message: "Login Faild" })
+    const { nombre, edad, url } = req.body
+    try{
+        const est= await Estudiante.create({ nombre, edad, url });
+        res.status(201).json(est)
+    } catch (err)
+    {
+        res.status(500).json(err);
     }
 }
 module.exports.updateEstudiante = (req, res) => {
@@ -54,8 +31,23 @@ module.exports.updateEstudiante = (req, res) => {
 }
 
 module.exports.deleteEstudiante = (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
+    
     Estudiante.deleteOne({ _id: id })
-        .then(resp => res.json(resp))
-        .catch(err => res.json(err))
-}
+        .then(resp => {
+            if (resp.deletedCount === 0) {
+                return res.status(404).json({ message: "Estudiante no encontrado" });
+            }
+            // ✅ Solo enviar UNA respuesta
+            res.json({ 
+                message: "Estudiante eliminado correctamente",
+                deletedCount: resp.deletedCount 
+            });
+        })
+        .catch(err => {
+            // ✅ Solo enviar UNA respuesta de error
+            res.status(500).json({ 
+                message: "Error al eliminar estudiante",
+                error: err.message 
+            });
+        })};

@@ -14,16 +14,30 @@ const EstudianteForm = (props) => {
   const [estudianteNuevo, setEstudianteNuevo] = useState({
     nombre: "",
     edad: "",
-    url: "",
-    email:"",
-    password:""
+    url: ""
   });
+  const mostrarDetalles = async () => {
+
+    const token = localStorage.getItem("token")
+    if (!token) {
+      console.log("Loogeate")
+    }
+    try {
+      const res = await api.get(`/estudiantes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(res.data)
+      setEstudianteNuevo(res.data)
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
   useEffect(() => {
-    api
-      .get(`/estudiantes/${id}`)
-      .then((res) => setEstudianteNuevo(res.data))
-      .catch((err) => console.log(err));
-  },[id]);
+    mostrarDetalles()
+  }, [id]);
 
   const guardarEstudiante = (e) => {
     e.preventDefault();
@@ -43,111 +57,80 @@ const EstudianteForm = (props) => {
 
     if (id) {
       onEditar(id, estudianteNuevo);
+      navegar("/estudiantes");
     } else {
       onAgregar(estudianteNuevo);
+      navegar("/estudiantes");
     }
-
-    navegar("/estudiantes/login");
   };
 
   return (
-    <form onSubmit={guardarEstudiante}>
-      <div>
-        <label htmlFor="txtNombre">Nombre: </label>
-        <input
-          type="text"
-          id="txtNombre"
-          name="nombre"
-          value={estudianteNuevo.nombre}
-          onChange={(e) =>
-            setEstudianteNuevo({
-              ...estudianteNuevo,
-              nombre: e.target.value,
-            })
-          }
-          placeholder="Ingresa tu nombre"
-          required
-        />
-      </div>
+    <div>
+      <button onClick={() => { navegar("/estudiantes") }}>Volver</button>
+      <form onSubmit={guardarEstudiante}>
+        <div>
+          <label htmlFor="txtNombre">Nombre: </label>
+          <input
+            type="text"
+            id="txtNombre"
+            name="nombre"
+            value={estudianteNuevo.nombre}
+            onChange={(e) =>
+              setEstudianteNuevo({
+                ...estudianteNuevo,
+                nombre: e.target.value,
+              })
+            }
+            placeholder="Ingresa tu nombre"
+            required
+          />
+        </div>
 
-      <div>{errorNombre}</div>
+        <div>{errorNombre}</div>
 
-      <div>
-        <label htmlFor="txtEdad">Edad: </label>
-        <input
-          type="text"
-          id="txtEdad"
-          name="edad"
-          value={estudianteNuevo.edad}
-          onChange={(e) =>
-            setEstudianteNuevo({
-              ...estudianteNuevo,
-              edad: e.target.value,
-            })
-          }
-          placeholder="Ingresa tu edad"
-          required
-        />
-      </div>
+        <div>
+          <label htmlFor="txtEdad">Edad: </label>
+          <input
+            type="text"
+            id="txtEdad"
+            name="edad"
+            value={estudianteNuevo.edad}
+            onChange={(e) =>
+              setEstudianteNuevo({
+                ...estudianteNuevo,
+                edad: e.target.value,
+              })
+            }
+            placeholder="Ingresa tu edad"
+            required
+          />
+        </div>
 
-      <div>{errorEdad}</div>
+        <div>{errorEdad}</div>
 
-      <div>
-        <label htmlFor="txtUrl">Url: </label>
-        <input
-          type="text"
-          id="txtUrl"
-          name="url"
-          value={estudianteNuevo.url}
-          onChange={(e) =>
-            setEstudianteNuevo({
-              ...estudianteNuevo,
-              url: e.target.value,
-            })
-          }
-          placeholder="Ingresa la URL"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="txtEmail">Email: </label>
-        <input
-          type="email"
-          id="txtEmail"
-          name="email"
-          value={estudianteNuevo.email}
-          onChange={(e) =>
-            setEstudianteNuevo({
-              ...estudianteNuevo,
-              email: e.target.value,
-            })
-          }
-          placeholder="Ingresa la Email"
-          required
-        />
-      </div>
-            <div>
-        <label htmlFor="txtPassword">Password: </label>
-        <input
-          type="password"
-          id="txtPassword"
-          name="password"
-          value={estudianteNuevo.password}
-          onChange={(e) =>
-            setEstudianteNuevo({
-              ...estudianteNuevo,
-              password: e.target.value,
-            })
-          }
-          placeholder="Ingresa la password"
-          required
-        />
-      </div>
+        <div>
+          <label htmlFor="txtUrl">Url: </label>
+          <input
+            type="text"
+            id="txtUrl"
+            name="url"
+            value={estudianteNuevo.url}
+            onChange={(e) =>
+              setEstudianteNuevo({
+                ...estudianteNuevo,
+                url: e.target.value,
+              })
+            }
+            placeholder="Ingresa la URL"
+            required
+          />
+        </div>
+        <div>
+          <input type="submit" value={id ? "Actualizar" : "Agregar"} />
+        </div>
+      </form>
+    </div>
 
-      <div>
-        <input type="submit" value={id ? "Actualizar" : "Agregar"} />
-      </div>
-    </form>
   );
 };
 

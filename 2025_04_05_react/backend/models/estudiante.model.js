@@ -14,18 +14,6 @@ const EstudianteSchema = new mongoose.Schema({
     },
     url: {
         type: String
-    },
-    password: {
-        type: String,
-        required: [
-            true, "El password es requerido"
-        ]
-    },
-    email: {
-        type: String,
-        required: [
-            true, "El email es requerido"
-        ]
     }
 },
     {
@@ -33,5 +21,5 @@ const EstudianteSchema = new mongoose.Schema({
         versionKey: false
     }
 )
-const Estudiante = mongoose.model('Estudiante', EstudianteSchema);
+const Estudiante = mongoose.model('Estudiante', EstudianteSchema,'estudiantes');
 module.exports = Estudiante;

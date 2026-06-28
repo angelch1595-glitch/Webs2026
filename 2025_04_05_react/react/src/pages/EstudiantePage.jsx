@@ -12,15 +12,9 @@ const EstudiantePage = (props) => {
 
   return (
     <div>
+      <div>  <button onClick={() => { navegar("/userEstudiantes/login") }}>Volver</button></div>
       <h1>Estudiantes</h1>
-      {/*<EstudianteForm onAgregar={agregarEstudiante}></EstudianteForm>*/}
-      <button
-        onClick={() => {
-          navegar("/nuevo");
-        }}
-      >
-        <strong>+</strong>
-      </button>
+      <button onClick={() => { navegar("/nuevo") }}>Agregar estudiante</button>
       <hr />
       <div>
         {estudiantes.map((estudiante) => {
@@ -31,15 +25,13 @@ const EstudiantePage = (props) => {
                 nombre={estudiante.nombre}
                 edad={estudiante.edad}
                 url={estudiante.url}
-                email={estudiante.email}
-                password={estudiante.password}
               ></Estudiante>
               <button
                 onClick={() => navegar(`/estudiantes/${estudiante._id}/detalle`)}
               >
                 Detalle
               </button>
-              <button onClick={() => onEliminar(estudiante._id)}>  
+              <button onClick={() => onEliminar(estudiante._id)}>
                 Eliminar
               </button>
             </div>

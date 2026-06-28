@@ -4,11 +4,11 @@ const HomePage = () => {
     <div>
       <h1>Bienvenido</h1>
       <div>
-        <Link to="/estudiantes">Lista de estudiantes</Link>
+        <Link to="/userEstudiantes">Crear cuenta</Link>
       </div>
       <div>
         {" "}
-        <Link to="/nuevo">Agregar Estudiante</Link>
+        <Link to="/userEstudiantes/login">Iniciar Sesion</Link>
       </div>
     </div>
   );
